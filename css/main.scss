@@ -6,10 +6,22 @@
 $border-color: #4b6a88;
 $border-radius: 5px;
 
+$card-types: (
+  colour: #3D9970,
+  nose: #0074D9,
+  taste: #85144B,
+  pairing: #2ECC40,
+  price: #FF4136,
+);
+
 @page {
   size: A4 landscape;
   marks: cross;
   bleed: .9cm;
+}
+
+body {
+  -webkit-print-color-adjust: exact;
 }
 
 .cards-list {
@@ -51,6 +63,12 @@ $border-radius: 5px;
     z-index: 999;
   }
 
+  .card__icon {
+    .icon {
+      fill: $border-color;
+    }
+  }
+
   .card__illustration {
     position: absolute;
     top: .7in;
@@ -58,16 +76,62 @@ $border-radius: 5px;
     z-index: 0;
   }
 
+  .card__wine-colour {
+    position: absolute;
+    top: .5em;
+    right: 1em;
+    width: 30px;
+
+    .icon {
+      height: 30px;
+      width: 30px;
+
+      // -webkit-clip-path: circle(20px at 20px);
+      // clip-path: circle(20px at 20px);
+
+      &.icon--white {
+        fill: #DFC04B;
+      }
+
+      &.icon--red {
+        fill: #A22E08;
+      }
+
+      &.icon--rose {
+        fill: #F4A460;
+      }
+    }
+  }
+
   .card__title {
+    background-color: $border-color;
     border-bottom-left-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
     border-top: 2px solid $border-color;
-    font-weight: bold;
+    color: white;
+    font-family: sans-serif;
+    font-weight: 100;
     margin-bottom: 0;
     max-height: 3em;
     order: 90;
     padding-top: 1.5em;
   }
+
+  @each $type, $color in $card-types {
+    &.card--#{$type} {
+      border-color: $color;
+
+      .icon {
+        fill: $color;
+      }
+
+      .card__title {
+        background-color: $color;
+        border-color: $color;
+      }
+    }
+  }
+
 }
 
 @media print {

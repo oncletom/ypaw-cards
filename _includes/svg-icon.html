@@ -1,4 +1,4 @@
-<svg class="icon">
+<svg class="icon{%if include.variant %} icon--{{ include.variant }}{% endif %}">
   <title>{{ include.icon }}</title>
   <use xlink:href="{{ site.baseurl }}/assets/icons.svg#{{ include.icon }}"></use>
 </svg>
