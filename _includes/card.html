@@ -10,6 +10,10 @@
     {% endfor %}
   </div>
 
+  <div class="card__text">
+    {{ card.Texte }}
+  </div>
+
   {% if card.Image %}
   <div class="card__illustration">
     <img src="{{ site.baseurl}}/assets/{{ include.type }}/{{ card.Image }}" alt="">
