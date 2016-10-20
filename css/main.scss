@@ -131,8 +131,9 @@ body {
     font-weight: 100;
     justify-content: center;
     margin-bottom: 0;
+    min-height: 4em;
+    max-height: 4em;
     order: 90;
-    padding: .5em 0;
   }
 
   @each $type, $color in $card-types {
