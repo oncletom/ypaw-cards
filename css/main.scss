@@ -17,7 +17,7 @@ $card-types: (
 @page {
   size: A4 landscape;
   marks: cross;
-  bleed: .9cm;
+  bleed: 1cm;
 }
 
 body {
@@ -27,7 +27,7 @@ body {
 .cards-list {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: flex-start;
 
   > h1 {
     margin: 3em 10px;
@@ -38,6 +38,23 @@ body {
 .icon {
   height: 60px;
   width: 60px;
+}
+
+.card__separator {
+  display: none;
+
+  &:nth-child(16n) {
+    flex: 8 0 auto;
+    display: block;
+    height: .7cm;
+    page-break-after: always;
+    visibility: hidden;
+    width: 100%;
+  }
+
+  &:last-child {
+    display: none;
+  }
 }
 
 .card {
@@ -60,20 +77,22 @@ body {
   .card__text,
   .card__icon,
   .card__wine-colour {
-    flex: 1;
+    flex: none;
+    flex-shrink: 0;
     text-align: center;
     z-index: 999;
   }
 
-  .card__text,
-  .card__wine-colour {
-    &:empty {
-      display: none;
-    }
-  }
+  // .card__text,
+  // .card__wine-colour {
+  //   &:empty {
+  //     display: none;
+  //   }
+  // }
 
   .card__icon {
-    order: 1;
+    height: 10%;
+    order: 0;
 
     .icon {
       fill: $border-color;
@@ -85,7 +104,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 45%;
+    height: 55%;
     order: 10;
     padding: 0 1.5em;
   }
@@ -98,6 +117,7 @@ body {
   }
 
   .card__wine-colour {
+    height: 15%;
     order: 50;
 
     .icon {
@@ -131,8 +151,7 @@ body {
     font-weight: 100;
     justify-content: center;
     margin-bottom: 0;
-    min-height: 4em;
-    max-height: 4em;
+    height: 20%;
     order: 90;
   }
 
@@ -164,13 +183,7 @@ body {
     padding: 0;
   }
 
-  .cards-list {
-    display: block;
-  }
-
   .card {
-    flex: none;
-    float: left;
     widows: 0;
     margin: .03cm;
   }
