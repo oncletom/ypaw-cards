@@ -1,18 +1,15 @@
 {% assign card = include.card %}
+{% assign colours = card.WineColour | split: ',' %}
 <article class="card card--{{ card.Family | downcase }}">
   <h1 class="card__title">{{ card.Titre }}</h1>
-
-  <div class="card__wine-colour">
-    {% assign colours = card.WineColour | split: ',' %}
-
-    {% for color in colours %}
-      {% include svg-icon.html icon='bottle' variant=color %}
-    {% endfor %}
-  </div>
 
   <div class="card__text">
     {{ card.Texte }}
   </div>
+
+  <div class="card__wine-colour">{% for color in colours %}
+    {% include svg-icon.html icon='bottle' variant=color %}
+  {% endfor %}</div>
 
   {% if card.Image %}
   <div class="card__illustration">
